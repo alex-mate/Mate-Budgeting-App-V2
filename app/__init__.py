@@ -10,17 +10,19 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    # Import models so Alembic can detect them
-    from app import models  # noqa: F401
+    from app import models  # important for migrations
 
-    # Register blueprints (we'll add real pages next)
+    # Register blueprints HERE (inside function)
     from app.blueprints.auth import auth_bp
     from app.blueprints.dashboard import dashboard_bp
+    from app.blueprints.accounts import accounts_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(dashboard_bp)
+    app.register_blueprint(accounts_bp)
 
     return app
+
 
 from app.models.user import User
 

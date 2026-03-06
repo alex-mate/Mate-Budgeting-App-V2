@@ -1,0 +1,38 @@
+{% extends "layout/base.html" %}
+{% block content %}
+  <h1>New Account</h1>
+
+  <form method="POST">
+    <p>
+      <label>Name</label><br>
+      <input name="name" placeholder="Main Card / Cash / Savings" required>
+    </p>
+
+    <p>
+      <label>Bank (optional)</label><br>
+      <input name="institution" placeholder="Monzo / Barclays / etc">
+    </p>
+
+    <p>
+      <label>Type</label><br>
+      <select name="type" required>
+        <option value="checking">Checking</option>
+        <option value="savings">Savings</option>
+        <option value="cash">Cash</option>
+        <option value="credit">Credit Card</option>
+      </select>
+    </p>
+
+    <p>
+      <label>Opening balance (£)</label><br>
+      <input name="opening_balance" placeholder="0" value="0">
+    </p>
+
+    <p>
+      <label>Credit limit (£) (only for credit)</label><br>
+      <input name="credit_limit" placeholder="1000">
+    </p>
+
+    <button type="submit">Create</button>
+  </form>
+{% endblock %}

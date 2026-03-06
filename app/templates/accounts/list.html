@@ -1,0 +1,23 @@
+{% extends "layout/base.html" %}
+{% block content %}
+  <h1>Accounts</h1>
+  <p><a href="{{ url_for('accounts.new_account') }}">+ Add account</a></p>
+
+  {% if accounts %}
+    <ul>
+      {% for a in accounts %}
+        <li>
+          <strong>{{ a.name }}</strong>
+          {% if a.institution %} ({{ a.institution }}){% endif %}
+          — {{ a.type }}
+          — Opening: £{{ '%.2f' % (a.opening_balance_pennies/100) }}
+          {% if a.type == "credit" and a.credit_limit_pennies %}
+            — Limit: £{{ '%.2f' % (a.credit_limit_pennies/100) }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No accounts yet.</p>
+  {% endif %}
+{% endblock %}
